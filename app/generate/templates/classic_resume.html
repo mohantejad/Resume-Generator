@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ name }} - Resume</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; padding: 20px; }
+        h2 { margin-bottom: 5px; }
+        p, li { margin: 2px 0; }
+    </style>
+</head>
+<body>
+
+    <h1>{{ name }}</h1>
+    <p>{{ contact_details }}</p>
+    
+    {%- if summary.strip() -%}
+    <h2>Summary</h2>
+    <p>{{ summary }}</p>
+    {%- endif -%}
+
+    {%- if skills -%}
+    <h2>Skills</h2>
+    <ul>
+        {%- for skill in skills if skill.strip() -%}
+            <li>{{ skill }}</li>
+        {%- endfor -%}
+    </ul>
+    {%- endif -%}
+
+    {%- if experience -%}
+    <h2>Experience</h2>
+    {%- for exp in experience -%}
+        <p><strong>{{ exp.title }}</strong> at {{ exp.company }} ({{ exp.dates }})</p>
+        <p>{{ exp.description }}</p>
+    {%- endfor -%}
+    {%- endif -%}
+
+    {%- if projects -%}
+    <h2>Projects</h2>
+    {%- for proj in projects -%}
+        <p><strong>{{ proj.name }}</strong></p>
+        <p>{{ proj.description }}</p>
+    {%- endfor -%}
+    {%- endif -%}
+
+    {%- if certifications -%}
+    <h2>Certifications</h2>
+    <ul>
+        {%- for cert in certifications if cert.strip() -%}
+            <li>{{ cert }}</li>
+        {%- endfor -%}
+    </ul>
+    {%- endif -%}
+
+</body>
+</html>

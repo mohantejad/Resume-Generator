@@ -6,6 +6,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware as StarletteSessionMiddleware
 from app.users.routes import auth_router  
 from app.middleware import SessionMiddleware as CustomSessionMiddleware
+from app.generate.urls import generate_router
+
 
 load_dotenv() 
 
@@ -28,3 +30,5 @@ app.include_router(auth_router, prefix="/auth", tags=["Authentication"])
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
+
+app.include_router(generate_router, prefix='/resume', tags=['Resume'])
